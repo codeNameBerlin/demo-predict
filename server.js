@@ -23,9 +23,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-	res.send(database.users)
-});
+app.get('/', (req, res) => {res.send('it is working!')} );
 
 app.post('/signin', (req, res) => {signin.handleSignin(req, res, db, bcrypt)} );
 
@@ -37,8 +35,8 @@ app.put('/image/',  (req, res) => {image.handleImage(req, res, db)} );
 
 app.post('/imageurl/',  (req, res) => {image.handleApiCall(req, res)} );
 
-app.listen(3002, () => {
-	console.log('app is running on port 3002')
+app.listen(process.env.PORT || 3002, () => {
+	console.log(`app is running on port ${process.env.PORT}`)
 });
 
 // res => this is working
